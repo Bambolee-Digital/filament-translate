@@ -5,6 +5,8 @@ namespace BambooleeDigital\FilamentTranslate;
 use Illuminate\Support\Facades\Log;
 use Filament\Forms\Components\Field;
 use Spatie\LaravelPackageTools\Package;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\RichEditor;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use BambooleeDigital\FilamentTranslate\Actions\TranslateAction;
 
@@ -60,14 +62,27 @@ class FilamentTranslateServiceProvider extends PackageServiceProvider
                 'activeLocale' => $activeLocale,
                 'languages' => array_keys(config('filament-translate.languages')),
             ]);
-            
-            /** @var Field $this */
-            $this->suffixActions([
-                TranslateAction::make($this->getName())
-                    ->activeLocale($activeLocale)
-                    ->languages(array_keys(config('filament-translate.languages')))
-                    ->field($this),
-            ]);
+
+            // check if the field is a TextInput
+            if ($this instanceof TextInput) {
+                /** @var Field $this */
+                $this->suffixActions([
+                    TranslateAction::make($this->getName())
+                        ->activeLocale($activeLocale)
+                        ->languages(array_keys(config('filament-translate.languages')))
+                        ->field($this),
+                ]);
+            }
+
+            if ($this instanceof RichEditor) {
+                /** @var Field $this */
+                $this->hintAction(
+                    TranslateAction::make($this->getName())
+                        ->activeLocale($activeLocale)
+                        ->languages(array_keys(config('filament-translate.languages')))
+                        ->field($this),
+                );
+            }
 
             return $this;
         });
