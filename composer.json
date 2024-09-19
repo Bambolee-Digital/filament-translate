@@ -1,0 +1,40 @@
+{
+  "name": "bambolee-digital/filament-translate",
+  "description": "Plugin para Filament que adiciona funcionalidades de tradução aos campos do formulário, permitindo traduzir conteúdo diretamente na interface de administração.",
+  "version": "1.0.1",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+      {
+          "name": "Bamboolee Digital",
+          "email": "contato@bamboolee.digital"
+      }
+  ],
+  "require": {
+      "php": "^8.1",
+      "laravel/framework": "^10.0|^11.0",
+      "filament/filament": "^3.0",
+      "spatie/laravel-translatable": "^6.8",
+      "guzzlehttp/guzzle": "^7.9",
+    "deeplcom/deepl-php": "^1.9"
+  },
+  "autoload": {
+      "psr-4": {
+          "BambooleeDigital\\FilamentTranslate\\": "src/"
+      }
+  },
+  "extra": {
+      "laravel": {
+          "providers": [
+              "BambooleeDigital\\FilamentTranslate\\FilamentTranslateServiceProvider"
+          ]
+      }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  }
+}
