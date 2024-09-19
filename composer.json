@@ -4,6 +4,16 @@
   "version": "1.0.1",
   "type": "library",
   "license": "MIT",
+  "keywords": [
+    "filament",
+    "filamentphp",
+    "filament-translate",
+    "translation",
+    "translation-plugin",
+    "translation-package",
+    "translation-features",
+    "translation-plugin-for-filament"
+  ],
   "authors": [
       {
           "name": "Bamboolee Digital",
