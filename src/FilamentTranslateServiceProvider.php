@@ -4,9 +4,11 @@ namespace BambooleeDigital\FilamentTranslate;
 
 use Illuminate\Support\Facades\Log;
 use Filament\Forms\Components\Field;
+use Filament\Forms\Components\Textarea;
 use Spatie\LaravelPackageTools\Package;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\MarkdownEditor;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use BambooleeDigital\FilamentTranslate\Actions\TranslateAction;
 
@@ -82,6 +84,26 @@ class FilamentTranslateServiceProvider extends PackageServiceProvider
                         ->languages(array_keys(config('filament-translate.languages')))
                         ->field($this),
                 );
+            }
+
+            if ($this instanceof MarkdownEditor) {
+                /** @var Field $this */
+                $this->hintAction(
+                    TranslateAction::make($this->getName())
+                        ->activeLocale($activeLocale)
+                        ->languages(array_keys(config('filament-translate.languages')))
+                        ->field($this),
+                );
+            }
+
+            if ($this instanceof Textarea) {
+                /** @var Field $this */
+                $this->suffixActions([
+                    TranslateAction::make($this->getName())
+                        ->activeLocale($activeLocale)
+                        ->languages(array_keys(config('filament-translate.languages')))
+                        ->field($this),
+                ]);
             }
 
             return $this;
