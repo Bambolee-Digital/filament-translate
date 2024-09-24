@@ -1,7 +1,7 @@
 {
   "name": "bambolee-digital/filament-translate",
   "description": "A plugin for Filament that adds translation features to form fields, allowing content to be translated directly within the FilamentPHP admin interface.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "library",
   "license": "MIT",
   "keywords": [
